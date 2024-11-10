@@ -23,7 +23,7 @@ import com.example.assignment3compose.ui.sharedviewmodel.TextViewModel
 @Composable
 fun MainScreen() {
     val navController = rememberNavController()
-    val textViewModel: TextViewModel = viewModel()  // ViewModel to share data between screens
+    val textViewModel: TextViewModel = viewModel()
 
     Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
         // Navigation Buttons
@@ -39,16 +39,14 @@ fun MainScreen() {
         Button(onClick = { navController.navigate("lifecycle_logging") }, modifier = Modifier.fillMaxWidth().padding(8.dp)) {
             Text(text = "Lifecycle Logging Screen")
         }
-
-        // Navigation Graph for Screens
         NavHost(navController = navController, startDestination = "input") {
             composable("input") {
                 InputComposable(
-                    onSave = { textViewModel.setText(it) }  // Save input to ViewModel
+                    onSave = { textViewModel.setText(it) }
                 )
             }
             composable("output") {
-                OutputComposable(textViewModel = textViewModel)  // Display text from ViewModel
+                OutputComposable(textViewModel = textViewModel)
             }
             composable("movie_list") {
                 MovieListScreen(movies = listOf("Movie 1", "Movie 2", "Movie 3"))

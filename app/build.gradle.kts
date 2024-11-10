@@ -47,6 +47,13 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+
+    // Solution 1: Force a specific version of espresso-core
+    configurations.all {
+        resolutionStrategy {
+            force ("androidx.test.espresso:espresso-core:3.5.0")
+        }
+    }
 }
 
 dependencies {
